@@ -8,6 +8,11 @@ class UserContainer extends React.Component{
     componentDidMount(){
         this.props.retrieveUsers();
     }
+
+    deleteUser(e, userid) {
+        this.props.deleteUser(userid);
+    }
+
     render(){
         return (
             <div>
@@ -34,7 +39,7 @@ class UserContainer extends React.Component{
                                             <td>{o._id}</td>
                                             <td>{o.username}</td>
                                             <td>
-                                                <Link to={`/users/${o._id}`}>Edit</Link> | <a href="#">Delete</a>
+                                                <Link to={`/users/${o._id}`}>Edit</Link> | <a href="#" onClick={(e) => this.deleteUser(e,o._id)}>Delete</a>
                                             </td>
                                         </tr>
                                     )
@@ -56,7 +61,8 @@ const mapStateToProps = (state) =>{
   }
   
   const mapDispatchToProps = {
-    retrieveUsers: UserActions.retrieveUsers
+    retrieveUsers: UserActions.retrieveUsers,
+    deleteUser: UserActions.deleteUser
   }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer)
