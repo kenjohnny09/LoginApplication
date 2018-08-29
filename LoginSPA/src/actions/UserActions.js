@@ -35,15 +35,18 @@ export const createUser = (data) => {
                     type: actions.CREATE_USER,
                     data: result.data
                 })
+
+                dispatch({
+                    type: actions.RESET_FORM
+                })
             })
     }
   }
 
 export const updateUser = (data) => {
     return dispatch =>{
-        request.put(api +"/users/"+data._id, {data})
+        request.put(api +"/users/"+data._id, {...data})
             .then(result =>{
-                console.log("hello");
                 dispatch({
                     type: actions.UPDATE_USER,
                     data: result.data
@@ -66,6 +69,25 @@ export const deleteUser = (id) => {
 export const updateCurrentUser = (data) => {
     return {
         type: actions.UPDATE_CURRENT_USER,
+        data
+    }
+  }
+
+  export const loginUser = (data) => {
+    return dispatch =>{
+        request.post(api +"/login", {...data})
+            .then(result =>{
+                dispatch({
+                    type: actions.LOGIN_USER,
+                    data: result.data
+                })
+            })
+    }
+  }
+
+  export const resetForm = (data) => {
+    return {
+        type: actions.RESET_FORM,
         data
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as UserActions from './../../actions/UserActions'
-import { FieldGroup } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 
 class UserFormContainer extends React.Component{
     constructor(props){
@@ -29,38 +29,40 @@ class UserFormContainer extends React.Component{
 
         return (
             <div>
-                <div className="form-group">
-                    <label for="username" class="control-label">Name</label>
-                    <input placeholder="Enter Username" 
-                        type="text" 
-                        id="username" 
-                        value={currentUser.username}
-                        className="form-control" 
-                        onChange={(e) => this.handleOnChange(e,"username")}
-                    />
-                </div>
-                <div className="form-group">
-                    <label for="password" class="control-label">Password</label>
-                    <input placeholder="Enter Password" 
-                        type="password" 
-                        id="password"
-                        value={currentUser.password}
-                        className="form-control" 
-                        onChange={(e) => this.handleOnChange(e,"password")}
-                    />
-                </div>
-                <div className="form-group">
-                    <input type="submit" 
-                        value="Submit" 
-                        className={!currentUser._id ? "btn" : "btn hidden"} 
-                        onClick={this.handleSubmit} 
-                    />
-                    <input type="submit" 
-                        value="Update" 
-                        className={currentUser._id ? "btn" : "btn hidden"} 
-                        onClick={this.handleSubmitUpdate}    
-                    />
-                </div>
+                <form>
+                    <div className="form-group">
+                        <label for="username" class="control-label">Name</label>
+                        <input placeholder="Enter Username" 
+                            type="text" 
+                            id="username" 
+                            value={currentUser.username}
+                            className="form-control" 
+                            onChange={(e) => this.handleOnChange(e,"username")}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label for="password" class="control-label">Password</label>
+                        <input placeholder="Enter Password" 
+                            type="password" 
+                            id="password"
+                            value={currentUser.password}
+                            className="form-control" 
+                            onChange={(e) => this.handleOnChange(e,"password")}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" 
+                            value="Submit" 
+                            className={!currentUser._id ? "btn" : "btn hidden"} 
+                            onClick={this.handleSubmit} 
+                        />
+                        <input type="submit" 
+                            value="Update" 
+                            className={currentUser._id ? "btn" : "btn hidden"} 
+                            onClick={this.handleSubmitUpdate}    
+                        />
+                    </div>
+                </form>
             </div>
         )
     }

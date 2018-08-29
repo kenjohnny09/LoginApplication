@@ -7,6 +7,20 @@ router.use(cors());
 // User Model
 const User = require('../../models/User');
 
+router.post('/login', (req, res) => {
+    var username = req.body.username,
+        password = req.body.password;
+
+        User.findOne({ "username": username,"password":password }).then(function (user) {
+            if (user) {
+                    res.json({isRedirect:true});
+            } else {
+                res.json({isRedirect:false});
+            }
+        });
+
+});
+
 // @route GET api/users
 // @desc Get All Users
 // @access Public
@@ -51,13 +65,8 @@ router.delete('/users/:id', (req, res) => {
 // @desc Update user
 // @access Public
 router.put('/users/:id', (req, res) => {
-    User.findById(req.params.id, function(err,user){
-        if(!user) res.status(404).send({message: 'User does not exist!'});
-
-        user.username = req.body.username;
-        user.password= req.body.password;
-    
-        user.save().then(user => res.json(user));
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err, user){
+        res.json(user);
     });
 });
 module.exports = router;

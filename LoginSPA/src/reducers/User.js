@@ -35,6 +35,14 @@ const User = (state = initialState, payload) => {
       return Object.assign({}, state, { 
           userList: [...state.userList, payload.data]
         })
+    case actions.LOGIN_USER:
+        return Object.assign({}, state, { 
+          currentUser: payload.data 
+        })
+    case actions.RESET_FORM:
+        return Object.assign({}, state, { 
+          currentUser: state.currentUser = "" 
+        })
     default:
       return state;
   }
