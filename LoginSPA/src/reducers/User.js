@@ -41,7 +41,7 @@ const User = (state = initialState, payload) => {
         })
     case actions.RESET_FORM:
         return Object.assign({}, state, { 
-          currentUser: state.currentUser = "" 
+          currentUser: {...state.currentUser = ""}
         })
     default:
       return state;

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import * as UserActions from './../../actions/UserActions'
 import { Redirect } from 'react-router-dom';
+import '../../style/styles.css';
 
 class LoginContainer extends React.Component {
     constructor(props) {
@@ -19,13 +20,15 @@ class LoginContainer extends React.Component {
     render() {
         const { currentUser } = this.props
         
-        if (currentUser.isRedirect == true) {
-            return <Redirect to='/users' />;
+        if(currentUser.isRedirect)
+        {
+            if (currentUser.isRedirect == true) {
+                return <Redirect to='/users' />;
+            }
         }
-
         return(
-            <div class="container row">
-                <div class="jumbotron col-sm-4 pull-center">
+            <div className="loginContainer">
+                <div className="jumbotron col-sm-4 pull-center">
                     <div>
                         <label>Username:</label>
                         <input type="text" 
@@ -41,9 +44,8 @@ class LoginContainer extends React.Component {
                         />
                     </div>
                    <br />
-                   <div hidden={!currentUser.isRedirect}><p>Username and password does not match!</p></div>
                     <div>
-                        <input class="btn btn-primary" 
+                        <input className="btn btn-primary" 
                             type="submit" 
                             value="Log In"
                             onClick={this.handleSubmit}

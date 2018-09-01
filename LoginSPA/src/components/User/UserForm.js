@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as UserActions from './../../actions/UserActions'
-import { Redirect } from 'react-router-dom'
+import Header from '../Header/Header';
 
 class UserFormContainer extends React.Component{
     constructor(props){
@@ -29,6 +29,7 @@ class UserFormContainer extends React.Component{
 
         return (
             <div>
+                < Header />
                 <form>
                     <div className="form-group">
                         <label for="username" class="control-label">Name</label>

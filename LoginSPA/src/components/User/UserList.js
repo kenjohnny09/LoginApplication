@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as UserActions from './../../actions/UserActions'
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
+import Header from '../Header/Header';
 
 class UserContainer extends React.Component{
     componentDidMount(){
@@ -16,6 +17,7 @@ class UserContainer extends React.Component{
     render(){
         return (
             <div>
+                <Header />
                 <div className="row">
                     <div className="col-sm-12">
                         <Link to="/users/create" className="btn btn-success">Create User</Link>
@@ -39,7 +41,7 @@ class UserContainer extends React.Component{
                                             <td>{o._id}</td>
                                             <td>{o.username}</td>
                                             <td>
-                                                <Link to={`/users/${o._id}`}>Edit</Link> | <a href="#" onClick={(e) => this.deleteUser(e,o._id)}>Delete</a>
+                                                <Link to={`/users/${o._id}`}>Edit</Link> | <Link to="#" onClick={(e) => this.deleteUser(e,o._id)}>Delete</Link>
                                             </td>
                                         </tr>
                                     )
