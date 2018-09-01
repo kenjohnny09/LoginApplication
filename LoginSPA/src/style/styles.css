@@ -9,3 +9,8 @@
     display: flex;
     float: none;
 }
+
+.errorMsg {
+    font-size: 10px !important;
+    color:red;
+}

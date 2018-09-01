@@ -17,7 +17,7 @@ const User = (state = initialState, payload) => {
         })
     case actions.DELETE_USER:
       return Object.assign({}, state, { 
-          userList: state.userList.filter(o => o._id !== payload.id)
+          userList: state.userList.splice(state.userList.map(function(item){return item._id;}).indexOf(payload._id),1)
         })
     case actions.GET_USER_DETAIL:
       return Object.assign({}, state, { 

@@ -4,9 +4,7 @@ import * as UserActions from './../../actions/UserActions'
 import Header from '../Header/Header';
 
 class UserFormContainer extends React.Component{
-    constructor(props){
-        super(props);
-    }
+
     componentDidMount(){
         if(this.props.match.params && this.props.match.params.id){
             this.props.getUser(this.props.match.params.id)

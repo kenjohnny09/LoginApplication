@@ -7,6 +7,7 @@ import '../../style/styles.css';
 class LoginContainer extends React.Component {
     constructor(props) {
         super(props);
+        this.message="";
     }
 
     handleOnChange = (e, propName) =>{
@@ -17,14 +18,22 @@ class LoginContainer extends React.Component {
         this.props.loginUser(this.props.currentUser);
     }
 
+    resetForm() {
+        this.props.resetForm();
+    }
+
     render() {
         const { currentUser } = this.props
         
-        if(currentUser.isRedirect)
+        if(currentUser.isRedirect===false)
         {
-            if (currentUser.isRedirect == true) {
-                return <Redirect to='/users' />;
-            }
+            this.message="Username or Password is incorrect."
+        }
+        else if(currentUser.isRedirect === true){
+            return <Redirect to='/users' />;
+        }
+        else{
+
         }
         return(
             <div className="loginContainer">
@@ -45,6 +54,7 @@ class LoginContainer extends React.Component {
                     </div>
                    <br />
                     <div>
+                        <p className="errorMsg">{this.message}</p>
                         <input className="btn btn-primary" 
                             type="submit" 
                             value="Log In"

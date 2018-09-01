@@ -13,9 +13,9 @@ router.post('/login', (req, res) => {
 
         User.findOne({ "username": username,"password":password }).then(function (user) {
             if (user) {
-                    res.json({isRedirect:true});
+                    res.json({user, isRedirect:true});
             } else {
-                res.json({isRedirect:false});
+                res.json({username:"",password:"", isRedirect:false});
             }
         });
 
@@ -56,7 +56,7 @@ router.post('/users', (req, res) => {
 // @access Public
 router.delete('/users/:id', (req, res) => {
     User.findById(req.params.id)
-     .then(user => user.remove().then(() => res.json({success: true})))
+     .then(user => user.remove().then(() => res.json({user})))
      .catch(err => res.status(404).json({success:false}));
 });
 

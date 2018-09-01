@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Routes from './../routes'
-import { Switch, Link } from 'react-router-dom'
-import Header from './Header/Header'
+import { Switch } from 'react-router-dom'
 
 class AppContainer extends Component {
   render() {
